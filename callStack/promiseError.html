@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+      document.writeln("<h1>Promise Chaining with error handling</h1>");
+      document.querySelector("body").style.backgroundColor = "lightpink";
+      document.querySelector("h1").style.color = "blue";
+
+      function savetoDBPromise(data) {
+        return new Promise((resolved, rejected) => {
+          let internetSpeed = Math.floor(Math.random() * 10) + 1;
+          //console.log(internetSpeed);
+          if (internetSpeed > 4) {
+            resolved("Data saved");
+          } else {
+            rejected("Data was not saved , week connection");
+          }
+        });
+      }
+
+      let request = savetoDBPromise("Ankita Promis");
+      request
+        .then((result) => {
+          console.log("Data 1 Promise was resolved");
+          console.log("req=> ", result);
+          return savetoDBPromise("Hello world");
+        })
+        .then((result) => {
+          console.log("Data 2 saved");
+          console.log(result);
+        })
+        .catch((error) => {
+          console.log("Promise are rejected");
+          console.log("req=>", error);
+        });
+
+      //console.log(savetoDBPromise("Prachi Collage"));
+    </script>
+  </body>
+</html>

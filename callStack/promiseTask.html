@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Promise Task</h1>
+
+    <script>
+      "use strict";
+      let h1 = document.querySelector("h1");
+
+      function colorChange(color, delay) {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            h1.style.color = color;
+            resolve("color changed");
+          }, delay);
+        });
+      }
+      //let request=colorChange("red",1000)
+      colorChange("red", 1000).then(()=>{
+        console.log("red color was changed");
+        return colorChange("orange",1000)
+      }).then(()=>{
+        console.log("orange was done");
+        return colorChange("blue", 3000);
+      }).then(()=>{
+        console.log("blue color was completed");
+      })
+        
+
+    </script>
+  </body>
+</html>
